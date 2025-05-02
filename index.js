@@ -65,3 +65,5 @@ async function main() {
 		setFailed(error.message);
 	}
 }
+
+main();
