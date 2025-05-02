@@ -20,4 +20,4 @@ outputs:
         description: "Command to install the published module"
 runs:
     using: "node20"
-    main: "index.js"
+    main: "dist/index.js"
