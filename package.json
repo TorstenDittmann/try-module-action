@@ -5,7 +5,7 @@
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "rm -rf dist && ncc build index.js --license licenses.txt",
+		"build": "esbuild index.js --bundle --outfile=dist/index.js --platform=node",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -19,6 +19,7 @@
 		"try-module.cloud": "^1.0.7"
 	},
 	"devDependencies": {
-		"@vercel/ncc": "^0.38.3"
+		"@vercel/ncc": "^0.38.3",
+		"esbuild": "^0.25.3"
 	}
 }
