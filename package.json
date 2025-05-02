@@ -3,8 +3,9 @@
 	"type": "module",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "dist/index.js",
 	"scripts": {
+		"build": "rm -rf dist && ncc build index.js --license licenses.txt",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -16,5 +17,8 @@
 		"@actions/github": "^6.0.0",
 		"dedent": "^1.6.0",
 		"try-module.cloud": "^1.0.7"
+	},
+	"devDependencies": {
+		"@vercel/ncc": "^0.38.3"
 	}
 }
