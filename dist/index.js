@@ -21786,7 +21786,7 @@ async function detectPackageManager(cwd$2, options = {}) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/try-module.cloud@1.0.9/node_modules/try-module.cloud/main.js
+//#region node_modules/.pnpm/try-module.cloud@1.0.12/node_modules/try-module.cloud/main.js
 const exec = promisify(cp.exec);
 /**
 * @param {string} api_key
@@ -21830,7 +21830,18 @@ async function publish_module(api_key, organization, directory) {
 * @returns {Promise<string>}
 */
 async function get_version() {
+	const inside_github_action = process.env.GITHUB_ACTIONS === "true";
+	if (inside_github_action) {
+		consola.info("identified github action");
+		if (process.env.GITHUB_SHA) return process.env.GITHUB_SHA.substring(0, 7);
+	}
+	const inside_gitlab_pipeline = process.env.GITLAB_CI === "true";
+	if (inside_gitlab_pipeline) {
+		consola.info("identified gitlab pipeline");
+		if (process.env.CI_COMMIT_SHORT_SHA) return process.env.CI_COMMIT_SHORT_SHA;
+	}
 	try {
+		consola.info("identified git repository");
 		const { stdout: stdout$1 } = await exec("git rev-parse --short HEAD");
 		if (stdout$1) return stdout$1.trim();
 	} catch (e) {
