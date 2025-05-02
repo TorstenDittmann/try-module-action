@@ -21859,15 +21859,13 @@ async function main() {
 		const identifier = `try-module:${package_name}`;
 		const existing_comment = comments.data.find((c$1) => c$1.user.login === "github-actions[bot]" && c$1.body.includes(identifier));
 		const body = dedent_default`🚀 **Preview Release Available!**
-			A preview version of this module is ready for you to try out.
+			A preview version of this module is ready for you to try out on [try-module.cloud](https://try-module.cloud).
 			
 			**Install with:**
 			
 			\`\`\`sh
 			${command}
 			\`\`\`
-			
-			> ℹ️ This is a preview release. Please report any issues or feedback!
 			
 			<!-- ${identifier} -->`;
 		if (existing_comment) await octokit.rest.issues.updateComment({
