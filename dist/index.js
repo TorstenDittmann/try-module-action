@@ -21049,7 +21049,7 @@ function createConsola(options = {}) {
 		defaults: { level },
 		stdout: process.stdout,
 		stderr: process.stderr,
-		prompt: (...args) => import("./prompt-9XRcOgan.js").then((m) => m.prompt(...args)),
+		prompt: (...args) => import("./prompt.js").then((m) => m.prompt(...args)),
 		reporters: options.reporters || [options.fancy ?? !(T || R$1) ? new FancyReporter() : new BasicReporter()],
 		...options
 	});

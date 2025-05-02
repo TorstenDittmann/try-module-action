@@ -5,6 +5,8 @@ export default defineConfig({
 	output: {
 		dir: "dist/",
 		format: "esm",
+		chunkFileNames: "[name].js",
 	},
+	
 	platform: "node",
 });
