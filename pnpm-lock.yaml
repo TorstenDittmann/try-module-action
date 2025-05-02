@@ -18,8 +18,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0
       try-module.cloud:
-        specifier: ^1.0.13
-        version: 1.0.13
+        specifier: ^1.0.14
+        version: 1.0.14
     devDependencies:
       rolldown:
         specifier: 1.0.0-beta.8
@@ -234,8 +234,8 @@ packages:
   tinyexec@0.3.2:
     resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
 
-  try-module.cloud@1.0.13:
-    resolution: {integrity: sha512-gKADoEPqKXuwOHylEIxEZNWU6d8vVdQ0CWq2IMKw3B0ual/k5q+0OTj2AbNL94nXASjZrbR9tVrFe2CQZS3Z3Q==}
+  try-module.cloud@1.0.14:
+    resolution: {integrity: sha512-/vVzYJKkJYcJ7kP+1ewNO7kvzbXiUZuLyIQVU7YUcqEhIMokDWEYsPGKZG+RBCP42iG+fjQQkdqH3nOuOzw7UQ==}
     hasBin: true
 
   tslib@2.8.1:
@@ -482,7 +482,7 @@ snapshots:
 
   tinyexec@0.3.2: {}
 
-  try-module.cloud@1.0.13:
+  try-module.cloud@1.0.14:
     dependencies:
       citty: 0.1.6
       consola: 3.4.2

@@ -21786,7 +21786,7 @@ async function detectPackageManager(cwd$2, options = {}) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/try-module.cloud@1.0.13/node_modules/try-module.cloud/main.js
+//#region node_modules/.pnpm/try-module.cloud@1.0.14/node_modules/try-module.cloud/main.js
 const exec = promisify(cp.exec);
 /**
 * @param {string} api_key
@@ -21834,7 +21834,7 @@ async function get_version() {
 	if (inside_github_action) {
 		consola.info("identified github action");
 		const sha = process.env.GITHUB_HEAD_SHA || process.env.GITHUB_SHA;
-		if (process.env.GITHUB_SHA) return sha.substring(0, 7);
+		if (sha) return sha.substring(0, 7);
 	}
 	const inside_gitlab_pipeline = process.env.GITLAB_CI === "true";
 	if (inside_gitlab_pipeline) {
