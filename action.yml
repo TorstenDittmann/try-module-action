@@ -1,0 +1,23 @@
+name: "try-module.cloud"
+description: "Publishes packages to try-module.cloud"
+inputs:
+    organization:
+        description: "Organization name"
+        required: true
+    directory:
+        description: "Path to your module"
+        required: true
+    secret:
+        description: "Secret key"
+        required: true
+    github-token:
+        description: "GitHub token"
+        required: true
+outputs:
+    url:
+        description: "URL of the published module"
+    command:
+        description: "Command to install the published module"
+runs:
+    using: "node20"
+    main: "index.js"
