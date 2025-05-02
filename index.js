@@ -1,8 +1,8 @@
 import { getInput, setFailed, setOutput } from "@actions/core";
+import github from "@actions/github";
 import dedent from "dedent";
 import { join } from "node:path";
 import { publish_module } from "try-module.cloud";
-const github = require("@actions/github");
 
 async function main() {
 	try {
