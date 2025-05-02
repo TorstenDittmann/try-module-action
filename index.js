@@ -31,15 +31,13 @@ async function main() {
 		);
 
 		const body = dedent`🚀 **Preview Release Available!**
-			A preview version of this module is ready for you to try out.
+			A preview version of this module is ready for you to try out on [try-module.cloud](https://try-module.cloud).
 			
 			**Install with:**
 			
 			\`\`\`sh
 			${command}
 			\`\`\`
-			
-			> ℹ️ This is a preview release. Please report any issues or feedback!
 			
 			<!-- ${identifier} -->`;
 
