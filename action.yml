@@ -1,5 +1,9 @@
 name: "try-module.cloud"
 description: "Publishes packages to try-module.cloud"
+branding:
+    icon: "package"
+    color: "black"
+
 inputs:
     organization:
         description: "Organization name"
