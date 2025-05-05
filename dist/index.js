@@ -17142,6 +17142,7 @@ var require_context = __commonJS({ "node_modules/.pnpm/@actions+github@6.0.0/nod
 	};
 	exports.Context = Context$2;
 } });
+var import_context = __toESM$1(require_context(), 1);
 
 //#endregion
 //#region node_modules/.pnpm/@actions+github@6.0.0/node_modules/@actions/github/lib/internal/utils.js
@@ -21786,7 +21787,7 @@ async function detectPackageManager(cwd$2, options = {}) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/try-module.cloud@1.0.14/node_modules/try-module.cloud/main.js
+//#region node_modules/.pnpm/try-module.cloud@1.0.15/node_modules/try-module.cloud/main.js
 const exec = promisify(cp.exec);
 /**
 * @param {string} api_key
@@ -21833,7 +21834,8 @@ async function get_version() {
 	const inside_github_action = process.env.GITHUB_ACTIONS === "true";
 	if (inside_github_action) {
 		consola.info("identified github action");
-		const sha = process.env.GITHUB_HEAD_SHA || process.env.GITHUB_SHA;
+		const context = new import_context.Context();
+		const sha = context.payload.pull_request.head.sha || process.env.GITHUB_HEAD_SHA || process.env.GITHUB_SHA;
 		if (sha) return sha.substring(0, 7);
 	}
 	const inside_gitlab_pipeline = process.env.GITLAB_CI === "true";
