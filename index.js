@@ -16,6 +16,10 @@ async function main() {
 			organization,
 			join(process.cwd(), directoy),
 		);
+		const is_pr = github.context.payload.pull_request !== undefined;
+		if (!is_pr) {
+			throw new Error("This action is only supported for pull requests.");
+		}
 		const pr_number = github.context.payload.pull_request.number;
 		const { owner, repo } = github.context.repo;
 		const comments = await octokit.rest.issues.listComments({
