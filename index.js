@@ -40,7 +40,7 @@ async function main() {
 			**Install with:**
 
 			\`\`\`sh
-			${package_manager} install ${urls.url_branch}
+			${package_manager} install ${urls.url_commit}
 			\`\`\`
 			
 			**Alternatively, you may specify a branch name or pull request number:**

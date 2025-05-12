@@ -62,7 +62,7 @@ ${r}`)}formatType(e,t,n){let r=Ir[e.type]||Lr[e.level]||`gray`;if(t)return Gr(r)
 			**Install with:**
 
 			\`\`\`sh
-			${s} install ${o.url_branch}
+			${s} install ${o.url_commit}
 			\`\`\`
 			
 			**Alternatively, you may specify a branch name or pull request number:**
