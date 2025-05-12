@@ -11,7 +11,7 @@ async function main() {
 		const directoy = getInput("directory");
 		const organization = getInput("organization");
 		const octokit = github.getOctokit(token);
-		const { url, command, package_name } = await publish_module(
+		const { urls, package_manager, package_name } = await publish_module(
 			secret,
 			organization,
 			join(process.cwd(), directoy),
@@ -30,16 +30,24 @@ async function main() {
 		const identifier = `try-module:${package_name}`;
 		const existing_comment = comments.data.find(
 			(c) =>
-				c.user.login === "github-actions[bot]" && c.body.includes(identifier),
+				c.user.login === "github-actions[bot]" &&
+				c.body.includes(identifier),
 		);
 
 		const body = dedent`🚀 **Preview Release Available!**
 			A preview version of this module is ready for you to try out on [try-module.cloud](https://try-module.cloud).
 			
 			**Install with:**
-			
+
 			\`\`\`sh
-			${command}
+			${package_manager} install ${urls.url_branch}
+			\`\`\`
+			
+			**Alternatively, you may specify a branch name or pull request number:**
+
+			\`\`\`sh
+			${package_manager} install ${urls.url_branch}
+			${package_manager} install ${urls.url_pr}
 			\`\`\`
 			
 			<!-- ${identifier} -->`;
@@ -60,8 +68,10 @@ async function main() {
 			});
 		}
 
-		setOutput("url", url);
-		setOutput("command", command);
+		setOutput("url_commit", urls.url_commit);
+		setOutput("url_branch", urls.url_branch);
+		setOutput("url_pr", urls.url_pr);
+		setOutput("command", `${package_manager} install ${urls.url_branch}`);
 	} catch (error) {
 		setFailed(error.message);
 	}
