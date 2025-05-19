@@ -18,8 +18,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0
       try-module.cloud:
-        specifier: ^1.1.1
-        version: 1.1.1
+        specifier: ^1.1.2
+        version: 1.1.2
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -111,8 +111,8 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
-  '@napi-rs/wasm-runtime@0.2.9':
-    resolution: {integrity: sha512-OKRBiajrrxB9ATokgEQoG87Z25c67pCpYcCwmXYX8PBftC9pBfN18gnm/fh1wurSLEKIAt+QRFLFCQISrb66Jg==}
+  '@napi-rs/wasm-runtime@0.2.10':
+    resolution: {integrity: sha512-bCsCyeZEwVErsGmyPNSzwfwFn4OdxBj0mmv6hOFucB/k81Ojdu68RbZdxYsRQUPc9l6SU5F/cG+bXgWs3oUgsQ==}
 
   '@octokit/auth-token@4.0.0':
     resolution: {integrity: sha512-tY/msAuJo6ARbK6SPIxZrPBms3xPbfwBrulZe0Wtr/DIY9lje2HeV1uoebShn6mx7SjCHif6EjMvoREj+gZ+SA==}
@@ -290,8 +290,8 @@ packages:
   tinyexec@0.3.2:
     resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
 
-  try-module.cloud@1.1.1:
-    resolution: {integrity: sha512-DxgdZeucwlXcC3QbM4zsJMT8PxRHMY9RGZ0m00OaWMqzXvJbH4yP+zMaa/VxWYLPm2pRY7y41JjZFPKl9WfJiQ==}
+  try-module.cloud@1.1.2:
+    resolution: {integrity: sha512-gEq8u8v5s0bw9LejsZ5Q2H0NUxAHYSToFR8j2PYGGe1jidVtEcIK239x2WzOvjk3r5xFMdeUGAzpswXdM0d4hw==}
     hasBin: true
 
   tslib@2.8.1:
@@ -400,7 +400,7 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@napi-rs/wasm-runtime@0.2.9':
+  '@napi-rs/wasm-runtime@0.2.10':
     dependencies:
       '@emnapi/core': 1.4.3
       '@emnapi/runtime': 1.4.3
@@ -493,7 +493,7 @@ snapshots:
 
   '@rolldown/binding-wasm32-wasi@1.0.0-beta.8':
     dependencies:
-      '@napi-rs/wasm-runtime': 0.2.9
+      '@napi-rs/wasm-runtime': 0.2.10
     optional: true
 
   '@rolldown/binding-win32-arm64-msvc@1.0.0-beta.8':
@@ -576,7 +576,7 @@ snapshots:
 
   tinyexec@0.3.2: {}
 
-  try-module.cloud@1.1.1:
+  try-module.cloud@1.1.2:
     dependencies:
       '@actions/github': 6.0.1
       citty: 0.1.6
