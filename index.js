@@ -34,10 +34,10 @@ async function main() {
 				c.body.includes(identifier),
 		);
 
-		const body = dedent`🚀 **Preview Release Available!**
-			A preview version of this module is ready for you to try out on [try-module.cloud](https://try-module.cloud).
-			
-			**Install with:**
+		const body = dedent`## 🚀 \`${package_name}\`
+			**Preview Release Available on [try-module.cloud](https://try-module.cloud)!**
+
+			**Install \`${package_name}\` with:**
 
 			\`\`\`sh
 			${package_manager} install ${urls.url_commit}
