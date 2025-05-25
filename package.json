@@ -14,10 +14,10 @@
 		"@actions/core": "^1.11.1",
 		"@actions/github": "^6.0.1",
 		"dedent": "^1.6.0",
-		"try-module.cloud": "^1.1.11"
+		"try-module.cloud": "^2.0.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"rolldown": "1.0.0-beta.8"
+		"rolldown": "1.0.0-beta.9"
 	}
 }
