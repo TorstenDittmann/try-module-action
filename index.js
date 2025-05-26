@@ -8,13 +8,14 @@ async function main() {
 	try {
 		const token = getInput("github-token");
 		const secret = getInput("secret");
-		const directoy = getInput("directory");
+		const directory = getInput("directory");
 		const organization = getInput("organization");
 		const octokit = github.getOctokit(token);
+		
 		const { urls, package_manager, package_name } = await publish_module(
 			secret,
 			organization,
-			join(process.cwd(), directoy),
+			join(process.cwd(), directory),
 		);
 		const is_pr = github.context.payload.pull_request !== undefined;
 		if (!is_pr) {
@@ -27,15 +28,17 @@ async function main() {
 			repo,
 			issue_number: pr_number,
 		});
-		const identifier = `try-module:${package_name}`;
+		const identifier = "try-module:packages";
 		const existing_comment = comments.data.find(
 			(c) =>
 				c.user.login === "github-actions[bot]" &&
 				c.body.includes(identifier),
 		);
 
-		const body = dedent`## 🚀 \`${package_name}\`
-			**Preview Release Available on [try-module.cloud](https://try-module.cloud)!**
+		// Create the new package section with markers
+		const package_section = dedent`
+			<!-- try-module-package:${package_name} -->
+			### 📦 \`${package_name}\`
 
 			**Install \`${package_name}\` with:**
 
@@ -49,8 +52,30 @@ async function main() {
 			${package_manager} install ${urls.url_branch}
 			${package_manager} install ${urls.url_pr}
 			\`\`\`
+			<!-- /try-module-package:${package_name} -->
+		`;
+
+		let body;
+		if (existing_comment) {
+			// Check if this package already exists in the comment
+			const package_regex = new RegExp(`<!-- try-module-package:${package_name} -->.*?<!-- /try-module-package:${package_name} -->`, 'gs');
 			
-			<!-- ${identifier} -->`;
+			if (package_regex.test(existing_comment.body)) {
+				// Replace existing package section
+				body = existing_comment.body.replace(package_regex, package_section.trim());
+			} else {
+				// Append new package section before the main identifier
+				const main_identifier = `<!-- ${identifier} -->`;
+				body = existing_comment.body.replace(main_identifier, `${package_section.trim()}\n\n${main_identifier}`);
+			}
+		} else {
+			// Create new comment
+			body = dedent`## 🚀 Previews available on [try-module.cloud](https://try-module.cloud)!
+			
+				${package_section.trim()}
+				
+				<!-- ${identifier} -->`;
+		}
 
 		if (existing_comment) {
 			await octokit.rest.issues.updateComment({
