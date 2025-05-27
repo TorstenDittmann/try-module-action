@@ -18,8 +18,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0
       try-module.cloud:
-        specifier: ^2.0.1
-        version: 2.0.1
+        specifier: ^2.0.2
+        version: 2.0.2
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -318,8 +318,8 @@ packages:
   tinyexec@0.3.2:
     resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
 
-  try-module.cloud@2.0.1:
-    resolution: {integrity: sha512-5oGTcdzdhMXhFczHyl3OnS893Iq7AOTHJNhfU+338/WrV0+RvLcK8X20CwA3aN8Hf1WzrXx2+xEoMh3/4zpQ+A==}
+  try-module.cloud@2.0.2:
+    resolution: {integrity: sha512-NYEiDw5nXWZX+xU1HngGYxOWHMk3vy1wtiqfGmaMAx2tUPKUoZtyNE1zDotw6rcD2Z+kXXJN3lZevpKIfnDkSA==}
     hasBin: true
 
   tslib@2.8.1:
@@ -627,7 +627,7 @@ snapshots:
 
   tinyexec@0.3.2: {}
 
-  try-module.cloud@2.0.1:
+  try-module.cloud@2.0.2:
     dependencies:
       '@actions/github': 6.0.1
       '@jsdevtools/ez-spawn': 3.0.4
