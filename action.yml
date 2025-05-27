@@ -18,8 +18,12 @@ inputs:
         description: "GitHub token"
         required: true
 outputs:
-    url:
-        description: "URL of the published module"
+    url_commit:
+        description: "URL of the published module for commit"
+    url_branch:
+        description: "URL of the published module for branch"
+    url_pr:
+        description: "URL of the published module for PR"
     command:
         description: "Command to install the published module"
 runs:
