@@ -2,7 +2,7 @@ import { join } from "node:path";
 import { getInput, setFailed, setOutput } from "@actions/core";
 import github from "@actions/github";
 import dedent from "dedent";
-import { publish_module } from "try-module.cloud";
+import { publish_module } from "pkg.vc";
 
 async function main() {
 	try {
@@ -11,7 +11,7 @@ async function main() {
 		const directory = getInput("directory");
 		const organization = getInput("organization");
 		const octokit = github.getOctokit(token);
-		
+
 		const { urls, package_manager, package_name } = await publish_module(
 			secret,
 			organization,
@@ -28,16 +28,15 @@ async function main() {
 			repo,
 			issue_number: pr_number,
 		});
-		const identifier = "try-module:packages";
+		const identifier = "pkg-vc:packages";
 		const existing_comment = comments.data.find(
 			(c) =>
-				c.user.login === "github-actions[bot]" &&
-				c.body.includes(identifier),
+				c.user.login === "github-actions[bot]" && c.body.includes(identifier),
 		);
 
 		// Create the new package section with markers
 		const package_section = dedent`
-			<!-- try-module-package:${package_name} -->
+			<!-- pkg-vc:${package_name} -->
 			### 📦 \`${package_name}\`
 
 			**Install \`${package_name}\` with:**
@@ -52,25 +51,34 @@ async function main() {
 			${package_manager} install ${urls.url_branch}
 			${package_manager} install ${urls.url_pr}
 			\`\`\`
-			<!-- /try-module-package:${package_name} -->
+			<!-- /pkg-vc:${package_name} -->
 		`;
 
 		let body;
 		if (existing_comment) {
 			// Check if this package already exists in the comment
-			const package_regex = new RegExp(`<!-- try-module-package:${package_name} -->.*?<!-- /try-module-package:${package_name} -->`, 'gs');
-			
+			const package_regex = new RegExp(
+				`<!-- pkg-vc:${package_name} -->.*?<!-- /pkg-vc:${package_name} -->`,
+				"gs",
+			);
+
 			if (package_regex.test(existing_comment.body)) {
 				// Replace existing package section
-				body = existing_comment.body.replace(package_regex, package_section.trim());
+				body = existing_comment.body.replace(
+					package_regex,
+					package_section.trim(),
+				);
 			} else {
 				// Append new package section before the main identifier
 				const main_identifier = `<!-- ${identifier} -->`;
-				body = existing_comment.body.replace(main_identifier, `${package_section.trim()}\n\n${main_identifier}`);
+				body = existing_comment.body.replace(
+					main_identifier,
+					`${package_section.trim()}\n\n${main_identifier}`,
+				);
 			}
 		} else {
 			// Create new comment
-			body = dedent`## 🚀 Previews available on [try-module.cloud](https://try-module.cloud)!
+			body = dedent`## 🚀 Previews available on [pkg.vc](https://pkg.vc)!
 			
 				${package_section.trim()}
 				

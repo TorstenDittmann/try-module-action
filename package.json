@@ -1,6 +1,7 @@
 {
-	"name": "try-module-action",
+	"name": "@pkg-vc/publish-action",
 	"type": "module",
+	"private": true,
 	"scripts": {
 		"dev": "rolldown -w -c",
 		"build": "rolldown -c",
@@ -14,7 +15,7 @@
 		"@actions/core": "^1.11.1",
 		"@actions/github": "^6.0.1",
 		"dedent": "^1.6.0",
-		"try-module.cloud": "^2.0.2"
+		"pkg.vc": "^1.0.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

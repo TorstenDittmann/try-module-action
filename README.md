@@ -1,6 +1,6 @@
-# try-module-action
+# publish-action
 
-A GitHub Action that publishes packages to [try-module.cloud](https://try-module.cloud) and automatically manages a single PR comment with installation instructions for all published packages.
+A GitHub Action that publishes packages to [pkg.vc](https://pkg.vc) and automatically manages a single PR comment with installation instructions for all published packages.
 
 ## Features
 
@@ -13,7 +13,7 @@ A GitHub Action that publishes packages to [try-module.cloud](https://try-module
 Call the action once for each package you want to publish:
 
 ```yaml
-name: Publish to try-module.cloud
+name: Publish to pkg.vc
 on:
   pull_request:
     types: [opened, synchronize]
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Publish core package
-        uses: your-org/try-module-action@v1
+        uses: pkg-vc/publish-action@main
         with:
           directory: "packages/core"
           organization: "your-org"
@@ -33,7 +33,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Publish utils package
-        uses: your-org/try-module-action@v1
+        uses: pkg-vc/publish-action@main
         with:
           directory: "packages/utils"
           organization: "your-org"
@@ -41,7 +41,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Publish UI package
-        uses: your-org/try-module-action@v1
+        uses: pkg-vc/publish-action@main
         with:
           directory: "packages/ui"
           organization: "your-org"
@@ -54,8 +54,8 @@ jobs:
 | Input | Description | Required |
 |-------|-------------|----------|
 | `directory` | Path to your module | Yes |
-| `organization` | Organization name on try-module.cloud | Yes |
-| `secret` | Secret key for try-module.cloud | Yes |
+| `organization` | Organization name on pkg.vc | Yes |
+| `secret` | Secret key for pkg.vc | Yes |
 | `github-token` | GitHub token for commenting on PRs | Yes |
 
 ## Outputs
