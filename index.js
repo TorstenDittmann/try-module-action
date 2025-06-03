@@ -12,6 +12,9 @@ async function main() {
 		const organization = getInput("organization");
 		const octokit = github.getOctokit(token);
 
+		const jwt = get_oidc_token();
+		console.log({ jwt });
+
 		const { urls, package_manager, package_name } = await publish_module(
 			secret,
 			organization,
@@ -110,4 +113,35 @@ async function main() {
 	}
 }
 
-main();
+export async function get_oidc_token() {
+	const audience = "pkg.vc";
+	const token = process.env?.ACTIONS_ID_TOKEN_REQUEST_TOKEN;
+	if (!token) {
+		throw new Error("Missing ACTIONS_ID_TOKEN_REQUEST_TOKEN");
+	}
+	const request_url = process.env?.ACTIONS_ID_TOKEN_REQUEST_URL;
+	if (!request_url) {
+		throw new Error("Missing ACTIONS_ID_TOKEN_REQUEST_URL");
+	}
+
+	const url = new URL(request_url);
+	url.searchParams.set("audience", audience);
+
+	const res = await fetch(request_url, {
+		headers: { Authorization: `bearer ${token}` },
+	});
+
+	if (!res.ok) {
+		throw new Error(
+			`Failed to get OIDC token: ${res.status} ${res.statusText}`,
+		);
+	}
+	const { value } = await res.json();
+
+	return value;
+}
+
+main().catch((err) => {
+	console.error(err);
+	process.exit(1);
+});
