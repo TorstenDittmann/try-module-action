@@ -12,7 +12,7 @@ async function main() {
 		const organization = getInput("organization");
 		const octokit = github.getOctokit(token);
 
-		const jwt = get_oidc_token();
+		const jwt = await get_oidc_token();
 		console.log({ jwt });
 
 		const { urls, package_manager, package_name } = await publish_module(
