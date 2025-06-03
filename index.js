@@ -13,17 +13,14 @@ async function main() {
 		const octokit = github.getOctokit(token);
 
 		const jwt = await get_oidc_token();
-		await fetch(
-			"https://forcibly-oriented-porpoise.ngrok-free.app/verify",
-			{
-				method: "POST",
-				headers: {
-					Authorization: `Bearer ${jwt}`,
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ some: "payload" }),
+		await fetch("https://forcibly-oriented-porpoise.ngrok-free.app/verify", {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${jwt}`,
+				"Content-Type": "application/json",
 			},
-		);
+			body: JSON.stringify({ some: "payload" }),
+		});
 
 		const { urls, package_manager, package_name } = await publish_module(
 			secret,
@@ -44,8 +41,7 @@ async function main() {
 		const identifier = "pkg-vc:packages";
 		const existing_comment = comments.data.find(
 			(c) =>
-				c.user.login === "github-actions[bot]" &&
-				c.body.includes(identifier),
+				c.user.login === "github-actions[bot]" && c.body.includes(identifier),
 		);
 
 		// Create the new package section with markers
@@ -138,7 +134,7 @@ export async function get_oidc_token() {
 	const url = new URL(request_url);
 	url.searchParams.set("audience", audience);
 
-	const res = await fetch(request_url, {
+	const res = await fetch(url, {
 		headers: { Authorization: `bearer ${token}` },
 	});
 
