@@ -24,6 +24,7 @@ async function main() {
 		setOutput("url_pr", urls.url_pr);
 		setOutput("command", `${package_manager} install ${urls.url_branch}`);
 	} catch (error) {
+		console.error(error.message);
 		setFailed(error.message);
 	}
 }
