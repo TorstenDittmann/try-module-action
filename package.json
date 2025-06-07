@@ -15,10 +15,10 @@
 		"@actions/core": "^1.11.1",
 		"@actions/github": "^6.0.1",
 		"dedent": "^1.6.0",
-		"pkg.vc": "^1.0.1"
+		"pkg.vc": "^2.0.0-next.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"rolldown": "^1.0.0-beta.10"
+		"rolldown": "1.0.0-beta.13"
 	}
 }
