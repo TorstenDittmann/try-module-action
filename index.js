@@ -7,12 +7,11 @@ async function main() {
 		const directory = getInput("directory");
 		const organization = getInput("organization");
 		const jwt = await get_oidc_token();
-		console.log(jwt);
 		const { urls, package_manager } = await publish_module(
 			{
 				type: "github_oidc",
 				value: jwt,
-				endpoint: "https://forcibly-oriented-porpoise.ngrok-free.app/publish/github",
+				endpoint: "https://next.pkg.vc/publish/github",
 			},
 			organization,
 			join(process.cwd(), directory),
@@ -23,7 +22,6 @@ async function main() {
 		setOutput("url_pr", urls.url_pr);
 		setOutput("command", `${package_manager} install ${urls.url_branch}`);
 	} catch (error) {
-		console.error(error.message);
 		setFailed(error.message);
 	}
 }
