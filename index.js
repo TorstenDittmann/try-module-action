@@ -6,7 +6,6 @@ async function main() {
 	try {
 		const directory = getInput("directory");
 		const organization = getInput("organization");
-
 		const jwt = await get_oidc_token();
 
 		const { urls, package_manager } = await publish_module(
@@ -29,6 +28,9 @@ async function main() {
 	}
 }
 
+/**
+ * @returns {Promise<string>}
+ */
 export async function get_oidc_token() {
 	const audience = "pkg.vc";
 	const token = process.env?.ACTIONS_ID_TOKEN_REQUEST_TOKEN;
